@@ -1,34 +1,39 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Grid, Button } from "react-bootstrap";
+import { Grid } from "react-bootstrap";
 import Jumbotron from "./Components/Jumbotron";
+import SearchField from "./Components/SearchField";
 
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      hasSearchResults: false,
+      searching: false
+    };
+
+    this.searchXkcds = this.searchXkcds.bind(this);
+  }
+
+  searchXkcds(value) {
+    console.log("Updating state from search: " + value);
+    // TODO set searching true to show spinner, get Xkcd data for search term,
+    // then set hasSearchResults to true and render the results
+    this.setState({
+      hasSearchResults: true,
+      searching: false
+    });
   }
 
   render() {
+    const hasSearchResults = this.state.hasSearchResults;
+    const searching = this.state.searching;
+
     return (
       <div className="App">
         <Jumbotron />
         <Grid>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="input-group input-group-lg">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Search for..."
-                />
-                <span class="input-group-btn">
-                  <button class="btn btn-primary" type="button">
-                    <span class="glyphicon glyphicon-search" />
-                  </button>
-                </span>
-              </div>
-            </div>
-          </div>
+          <SearchField searchXkcds={this.searchXkcds} />
         </Grid>
       </div>
     );
