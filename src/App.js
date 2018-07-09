@@ -3,42 +3,58 @@ import "./App.css";
 import { Grid } from "react-bootstrap";
 import Jumbotron from "./Components/Jumbotron";
 import SearchField from "./Components/SearchField";
-const axios = require("axios");
+
+const Appbase = require("appbase-js");
+const elastic = new Appbase({
+  url: "https://scalr.api.appbase.io",
+  app: "relevant-xkcd",
+  credentials: process.env.REACT_APP_APPBASE_KEY
+});
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       hasSearchResults: false,
-      searching: false
+      comics: []
     };
 
     this.searchXkcds = this.searchXkcds.bind(this);
   }
 
   searchXkcds(value) {
-    console.log("Updating state from search: " + value);
-    // TODO set searching true to show spinner, get Xkcd data for search term,
-    // then set hasSearchResults to true and render the results
+    console.log("Searching Xkcd's for keyword - " + value);
     this.setState({
       hasSearchResults: false,
       searching: true
     });
-    const url = "http://localhost:8080/search?q=" + value;
-    axios
-      .get(url)
-      .then(function(response) {
-        const comic = response.data;
-        console.log(comic);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+
+    elastic.search({
+      type: "comics",
+      body: {
+          "query": {
+              "query_string": {
+                  "query": value
+              }
+          }
+      }
+    }).on('data', function (res) {
+        console.log("query result: ", res);
+        if(res.hits.hits.total > 0) {
+          this.setState({
+            hasSearchResults: true, 
+            comics: res.hits,
+          });
+        }
+    }).on('error', function (err) {
+        console.log("search error: ", err)
+    })
   }
 
   render() {
     const hasSearchResults = this.state.hasSearchResults;
-    const searching = this.state.searching;
+
 
     return (
       <div className="App">
