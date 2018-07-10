@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Grid } from "react-bootstrap";
 import Jumbotron from "./Components/Jumbotron";
 import SearchField from "./Components/SearchField";
+import ComicList from "./Components/ComicList";
 
 const Appbase = require("appbase-js");
 const elastic = new Appbase({
   url: "https://scalr.api.appbase.io",
   app: "relevant-xkcd",
-  credentials: "7pOxbobOr:87304d21-b4a4-4c9a-8c92-c23bf27f8be0"
+  credentials: process.env.APPBASE_KEY
 });
 
 class App extends Component {
@@ -60,13 +60,12 @@ class App extends Component {
   render() {
     const hasSearchResults = this.state.hasSearchResults;
 
-    const resultsArea = hasSearchResults ? <div>"results area"</div> : null;
+    const resultsArea = hasSearchResults ? <ComicList /> : null;
     return (
-      <div className="App">
+      <div class="container">
         <Jumbotron />
-        <Grid>
-          <SearchField searchXkcds={this.searchXkcds} /> {resultsArea}
-        </Grid>
+        <SearchField searchXkcds={this.searchXkcds} />
+        {resultsArea}
       </div>
     );
   }

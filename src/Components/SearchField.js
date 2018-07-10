@@ -29,14 +29,13 @@ class SearchField extends React.Component {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Search for..."
-                onChange={this.handleChange}
+                placeholder="Search"
               />
-              <span className="input-group-btn">
-                <button className="btn btn-primary" type="submit">
-                  <span className="glyphicon glyphicon-search" />
+              <div className="input-group-append">
+                <button className="btn btn-success" type="submit">
+                  Go
                 </button>
-              </span>
+              </div>
             </div>
           </div>
         </div>
