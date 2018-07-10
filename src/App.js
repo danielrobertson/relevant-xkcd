@@ -8,9 +8,8 @@ const Appbase = require("appbase-js");
 const elastic = new Appbase({
   url: "https://scalr.api.appbase.io",
   app: "relevant-xkcd",
-  credentials: process.env.REACT_APP_APPBASE_KEY
+  credentials: "7pOxbobOr:87304d21-b4a4-4c9a-8c92-c23bf27f8be0"
 });
-
 
 class App extends Component {
   constructor(props) {
@@ -30,37 +29,43 @@ class App extends Component {
       searching: true
     });
 
-    elastic.search({
-      type: "comics",
-      body: {
-          "query": {
-              "query_string": {
-                  "query": value
-              }
+    elastic
+      .search({
+        type: "comics",
+        body: {
+          query: {
+            query_string: {
+              query: value
+            }
           }
-      }
-    }).on('data', function (res) {
-        console.log("query result: ", res);
-        if(res.hits.hits.total > 0) {
-          this.setState({
-            hasSearchResults: true, 
-            comics: res.hits,
-          });
         }
-    }).on('error', function (err) {
-        console.log("search error: ", err)
-    })
+      })
+      .on(
+        "data",
+        function(res) {
+          console.log("query result: ", res);
+
+          console.log("yes");
+          this.setState({
+            hasSearchResults: true,
+            comics: res.hits
+          });
+        }.bind(this)
+      )
+      .on("error", function(err) {
+        console.log("search error: ", err);
+      });
   }
 
   render() {
     const hasSearchResults = this.state.hasSearchResults;
 
-
+    const resultsArea = hasSearchResults ? <div>"results area"</div> : null;
     return (
       <div className="App">
         <Jumbotron />
         <Grid>
-          <SearchField searchXkcds={this.searchXkcds} />
+          <SearchField searchXkcds={this.searchXkcds} /> {resultsArea}
         </Grid>
       </div>
     );
