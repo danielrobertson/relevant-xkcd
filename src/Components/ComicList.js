@@ -5,7 +5,7 @@ class ComicList extends React.Component {
     const cards = this.props.comics.map((c, i) => {
       const link = "https://xkcd.com/" + c._source.num;
       return (
-        <div className="card" key={i}>
+        <div className="card img-fade" key={i}>
           <a href={link}>
             <img
               className="card-img-top"

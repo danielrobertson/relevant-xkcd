@@ -12,3 +12,38 @@ body {
   margin: auto;
   float: none;
 }
+
+.img-fade {
+  -webkit-animation: fadein 2.6s; /* Safari and Chrome */
+  -moz-animation: fadein 2.6s; /* Firefox */
+  animation: fadein 2.6s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Firefox */
+@-moz-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
