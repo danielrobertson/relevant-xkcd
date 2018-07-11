@@ -11,18 +11,17 @@ class SearchField extends React.Component {
 
   handleChange(event) {
     this.setState({ value: event.target.value });
-    // TODO autofill here with common search phrases
+    // TODO autofill here with common search phrases as user types
   }
 
   handleSubmit(event) {
-    console.log("A search was submitted: " + this.state.value);
     event.preventDefault();
     this.props.searchXkcds(this.state.value);
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} style={{ marginBottom: "2rem" }}>
         <div className="row">
           <div className="col-lg-6">
             <div className="input-group input-group-lg">
