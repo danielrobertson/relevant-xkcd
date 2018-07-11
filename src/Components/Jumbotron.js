@@ -3,7 +3,7 @@ import React from "react";
 class Jumbotron extends React.Component {
   render() {
     return (
-      <div class="jumbotron">
+      <div className="jumbotron">
         <h1 className="display-4">Relevant Xkcd</h1>
         <p className="lead">
           With over two thousand comics, there is a relevant Xkcd for every

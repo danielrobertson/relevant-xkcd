@@ -30,6 +30,7 @@ class SearchField extends React.Component {
                 type="text"
                 className="form-control"
                 placeholder="Search"
+                onChange={this.handleChange}
               />
               <div className="input-group-append">
                 <button className="btn btn-success" type="submit">

@@ -3,6 +3,7 @@ import "./App.css";
 import Jumbotron from "./Components/Jumbotron";
 import SearchField from "./Components/SearchField";
 import ComicList from "./Components/ComicList";
+import sampleComics from "./sampleComics";
 
 const Appbase = require("appbase-js");
 const elastic = new Appbase({
@@ -44,11 +45,9 @@ class App extends Component {
         "data",
         function(res) {
           console.log("query result: ", res);
-
-          console.log("yes");
           this.setState({
             hasSearchResults: true,
-            comics: res.hits
+            comics: res.hits.hits
           });
         }.bind(this)
       )
@@ -60,9 +59,12 @@ class App extends Component {
   render() {
     const hasSearchResults = this.state.hasSearchResults;
 
-    const resultsArea = hasSearchResults ? <ComicList /> : null;
+    const resultsArea = hasSearchResults ? (
+      <ComicList comics={this.state.comics} />
+    ) : null;
+
     return (
-      <div class="container">
+      <div className="container">
         <Jumbotron />
         <SearchField searchXkcds={this.searchXkcds} />
         {resultsArea}
