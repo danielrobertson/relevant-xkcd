@@ -3,9 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/core": "^0.5.2",
+    "@emotion/core": "^10.0.27",
+    "@emotion/styled": "^10.0.27",
     "appbase-js": "^3.0.1",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "emotion-theming": "^10.0.27",
+    "next": "^9.2.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   },
-  "scripts": {}
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  }
 }
