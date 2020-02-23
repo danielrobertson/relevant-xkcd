@@ -1,3 +1,4 @@
+import useSWR from "swr";
 import {
   ThemeProvider,
   CSSReset,
@@ -10,7 +11,13 @@ import {
 } from "@chakra-ui/core";
 
 export default function Index() {
-  const fetchSearchResults = () => console.log("Searching...");
+  const fetchSearchResults = async () => {
+    console.log("Clicked search");
+    const res = await fetch(`/api/search?q=someSearchQuery`);
+    const json = await res.json();
+    console.log(json);
+  };
+
   return (
     <ThemeProvider>
       <CSSReset />
