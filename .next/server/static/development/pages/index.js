@@ -112,26 +112,69 @@ var _jsxFileName = "/Users/daniel.robertson/Code/relevant-xkcd/pages/index.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 function Index() {
+  const fetchSearchResults = () => console.log("Searching...");
+
   return __jsx(_chakra_ui_core__WEBPACK_IMPORTED_MODULE_1__["ThemeProvider"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 5
+      lineNumber: 15
     },
     __self: this
   }, __jsx(_chakra_ui_core__WEBPACK_IMPORTED_MODULE_1__["CSSReset"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 6
+      lineNumber: 16
     },
     __self: this
-  }), __jsx(_chakra_ui_core__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  }), __jsx(_chakra_ui_core__WEBPACK_IMPORTED_MODULE_1__["Stack"], {
+    spacing: 3,
+    align: "center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 17
+    },
+    __self: this
+  }, __jsx(_chakra_ui_core__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     fontSize: "6xl",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7
+      lineNumber: 18
     },
     __self: this
-  }, "Xkcd Search"));
+  }, "Xkcd Search"), __jsx(_chakra_ui_core__WEBPACK_IMPORTED_MODULE_1__["InputGroup"], {
+    size: "lg",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 19
+    },
+    __self: this
+  }, __jsx(_chakra_ui_core__WEBPACK_IMPORTED_MODULE_1__["InputRightElement"], {
+    children: __jsx(_chakra_ui_core__WEBPACK_IMPORTED_MODULE_1__["IconButton"], {
+      onClick: fetchSearchResults,
+      variantColor: "teal",
+      "aria-label": "Search button",
+      icon: "search",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 22
+      },
+      __self: this
+    }),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 20
+    },
+    __self: this
+  }), __jsx(_chakra_ui_core__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+    type: "text",
+    roundedLeft: "0",
+    placeholder: "physics",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    },
+    __self: this
+  }))));
 }
 
 /***/ }),
