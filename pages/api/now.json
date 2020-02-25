@@ -1,0 +1,6 @@
+{
+  "env": {
+    "APPBASE_URL": "@appbase_url",
+    "APPBASE_KEY": "@appbase_key"
+  }
+}
