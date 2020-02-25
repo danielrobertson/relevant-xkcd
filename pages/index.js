@@ -8,17 +8,18 @@ import {
   IconButton,
   Stack
 } from "@chakra-ui/core";
+import ResultsGrid from "./components/ResultsGrid";
 
 export default Index => {
   const [searchValue, setSearchValue] = React.useState("");
+  const [comics, setComics] = React.useState([]);
+
   const handleChange = event => setSearchValue(event.target.value);
 
-  const fetchSearchResults = async e => {
-    if (searchValue.length > 0) {
-      const res = await fetch(`/api/search?q=${searchValue}`);
-      const json = await res.json();
-      console.log(json);
-    }
+  const fetchSearchResults = async () => {
+    const res = await fetch(`/api/search?q=${searchValue}`);
+    const json = await res.json();
+    setComics(json.hits);
   };
 
   return (
@@ -45,6 +46,8 @@ export default Index => {
             }
           />
         </InputGroup>
+        <ResultsGrid comics={comics} />
+        {/* {comics.length > 0 ? <ResultsGrid comics={comics} /> : null} */}
       </Stack>
     </ThemeProvider>
   );
