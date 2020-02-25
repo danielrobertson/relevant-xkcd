@@ -9,12 +9,16 @@ import {
   Stack
 } from "@chakra-ui/core";
 
-export default function Index() {
-  const fetchSearchResults = async () => {
-    console.log("Clicked search");
-    const res = await fetch(`/api/search?q=someSearchQuery`);
-    const json = await res.json();
-    console.log(json);
+export default Index => {
+  const [searchValue, setSearchValue] = React.useState("");
+  const handleChange = event => setSearchValue(event.target.value);
+
+  const fetchSearchResults = async e => {
+    if (searchValue.length > 0) {
+      const res = await fetch(`/api/search?q=${searchValue}`);
+      const json = await res.json();
+      console.log(json);
+    }
   };
 
   return (
@@ -23,6 +27,13 @@ export default function Index() {
       <Stack spacing={3} align="center">
         <Text fontSize="6xl">Xkcd Search</Text>
         <InputGroup size="lg">
+          <Input
+            value={searchValue}
+            onChange={handleChange}
+            type="text"
+            roundedLeft="0"
+            placeholder="physics"
+          />
           <InputRightElement
             children={
               <IconButton
@@ -33,9 +44,8 @@ export default function Index() {
               />
             }
           />
-          <Input type="text" roundedLeft="0" placeholder="physics" />
         </InputGroup>
       </Stack>
     </ThemeProvider>
   );
-}
+};
