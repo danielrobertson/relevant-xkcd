@@ -8,7 +8,7 @@ import {
   IconButton,
   Stack
 } from "@chakra-ui/core";
-import ResultsGrid from "./components/ResultsGrid";
+import Grid from "./components/Grid";
 
 export default Index => {
   const [searchValue, setSearchValue] = React.useState("");
@@ -46,7 +46,7 @@ export default Index => {
             }
           />
         </InputGroup>
-        <ResultsGrid comics={comics} />
+        <Grid comics={comics} />
         {/* {comics.length > 0 ? <ResultsGrid comics={comics} /> : null} */}
       </Stack>
     </ThemeProvider>
